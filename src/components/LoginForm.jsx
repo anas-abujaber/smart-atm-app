@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useUser } from "../context/UserContext";
+import { useUser } from "../context/AuthContext";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -27,7 +27,7 @@ function LoginForm() {
     if (success) {
       navigate("/dashboard");
     } else {
-      alert(error || "Invalid credentials. Try again.");
+      // alert(error || "Invalid credentials. Try again.");
     }
   };
   return (
