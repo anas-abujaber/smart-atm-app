@@ -1,5 +1,4 @@
 import { handleApi } from "../utils/apiHelper";
-import { processTransaction } from "../utils/transactionHelper";
 
 export const loginUser = async (username, pin) => {
   const users = await handleApi("users");
@@ -11,11 +10,53 @@ export const loginUser = async (username, pin) => {
 };
 
 export const makeDeposit = async (currentUser, amount) => {
-  return processTransaction(currentUser, amount, "Deposit");
+  const value = Number(amount);
+  if (!Number.isFinite(value) || value <= 0) {
+    throw new Error("Deposit amount must be a positive number");
+  }
+
+  const newTransaction = {
+    id: Date.now(),
+    type: "Deposit",
+    amount: value,
+    currency: "ILS",
+    date: new Date().toISOString(),
+  };
+
+  const updatedUserData = {
+    ...currentUser,
+    balance: currentUser.balance + value,
+    transactions: [...currentUser.transactions, newTransaction],
+  };
+
+  return handleApi(`users/${currentUser.id}`, "PUT", updatedUserData);
 };
 
 export const makeWithdraw = async (currentUser, amount) => {
-  return processTransaction(currentUser, amount, "Withdraw");
+  const value = Number(amount);
+  if (!Number.isFinite(value) || value <= 0) {
+    throw new Error("Withdraw amount must be a positive number");
+  }
+
+  if (value > currentUser.balance) {
+    throw new Error("Insufficient funds for this withdrawal");
+  }
+
+  const newTransaction = {
+    id: Date.now(),
+    type: "Withdraw",
+    amount: value,
+    currency: "ILS",
+    date: new Date().toISOString(),
+  };
+
+  const updatedUserData = {
+    ...currentUser,
+    balance: currentUser.balance - value,
+    transactions: [...currentUser.transactions, newTransaction],
+  };
+
+  return handleApi(`users/${currentUser.id}`, "PUT", updatedUserData);
 };
 
 export const resetAccount = async (currentUser) => {
