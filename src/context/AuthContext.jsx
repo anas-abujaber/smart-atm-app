@@ -1,9 +1,9 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import * as api from "../api/api.js";
 
-const UserContext = createContext(null);
+const AuthContext = createContext(null);
 
-export const UserProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem("atmUser");
     return savedUser ? JSON.parse(savedUser) : null;
@@ -21,8 +21,7 @@ export const UserProvider = ({ children }) => {
 
   const login = async (username, pin) => {
     if (!username || !pin) {
-      setError("Username and PIN are required");
-      return false;
+      throw new Error("Username and PIN are required");
     }
 
     setIsLoading(true);
@@ -33,7 +32,7 @@ export const UserProvider = ({ children }) => {
       return true;
     } catch (err) {
       setError(err.message);
-      return false;
+      throw err;
     } finally {
       setIsLoading(false);
     }
@@ -44,58 +43,24 @@ export const UserProvider = ({ children }) => {
     setError(null);
   };
 
-  const deposit = async (amount) => {
-    if (!user) {
-      setError("No user logged in");
-      return false;
-    }
-    setIsLoading(true);
-    setError(null);
-    try {
-      const updatedUser = await api.makeDeposit(user, amount);
-      setUser(updatedUser);
-      return true;
-    } catch (err) {
-      setError(err.message);
-      return false;
-    } finally {
-      setIsLoading(false);
-    }
+  const updateUser = (updatedUserData) => {
+    setUser(updatedUserData);
   };
 
-  const withdraw = async (amount) => {
+  const resetAccount = async () => {
     if (!user) {
-      setError("No user logged in");
-      return false;
+      throw new Error("No user logged in");
     }
-    setIsLoading(true);
-    setError(null);
-    try {
-      const updatedUser = await api.makeWithdraw(user, amount);
-      setUser(updatedUser);
-      return true;
-    } catch (err) {
-      setError(err.message);
-      return false;
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
-  const reset = async () => {
-    if (!user) {
-      setError("No user logged in");
-      return false;
-    }
     setIsLoading(true);
     setError(null);
     try {
       const updatedUser = await api.resetAccount(user);
       setUser(updatedUser);
-      return true;
+      return updatedUser;
     } catch (err) {
       setError(err.message);
-      return false;
+      throw err;
     } finally {
       setIsLoading(false);
     }
@@ -103,25 +68,23 @@ export const UserProvider = ({ children }) => {
 
   const value = {
     user,
-    isLoading,
-    error,
     login,
     logout,
-    deposit,
-    withdraw,
-    reset,
+    updateUser,
+    resetAccount,
     isAuthenticated: !!user,
+    isLoading,
+    error,
   };
 
-  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useUser = () => {
-  const context = useContext(UserContext);
+  const context = useContext(AuthContext);
   if (context === null) {
     throw new Error("useUser must be used within a UserProvider");
   }
-
   return context;
 };
