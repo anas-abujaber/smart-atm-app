@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import Layout from "../components/Layout";
 
 function Settings() {
-  return (
-    <div>Settings</div>
-  )
+  return <Layout>Settings</Layout>;
 }
 
-export default Settings
+export default Settings;
