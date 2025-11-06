@@ -13,7 +13,7 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false);
 
   const menuItems = [
-    { name: "Dashboard", path: "/", icon: LayoutDashboard },
+    { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard }, 
     { name: "Deposit", path: "/deposit", icon: PlusCircle },
     { name: "Withdraw", path: "/withdraw", icon: MinusCircle },
     { name: "History", path: "/history", icon: Clock },
