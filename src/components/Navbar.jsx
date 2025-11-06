@@ -1,6 +1,6 @@
 import React from "react";
 import { LogOutIcon } from "lucide-react";
-import { useUser } from "../context/UserContext";
+import { useUser } from "../context/AuthContext";
 import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 
 export default function Navbar() {

@@ -1,7 +1,7 @@
 import React from "react";
 import { PlusCircleIcon, MinusCircleIcon } from "lucide-react";
 import Layout from "../components/Layout";
-import { useUser } from "../context/UserContext";
+import { useUser } from "../context/AuthContext";
 
 export default function History() {
   const { user } = useUser();
