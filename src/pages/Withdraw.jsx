@@ -1,7 +1,8 @@
 import React from "react";
+import Layout from "../components/Layout";
 
 function Withdraw() {
-  return <div>Withdraw</div>;
+  return <Layout>Withdraw</Layout>;
 }
 
 export default Withdraw;

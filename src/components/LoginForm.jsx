@@ -25,7 +25,7 @@ function LoginForm() {
 
     const success = await login(username, pin);
     if (success) {
-      navigate("/dashboard");
+      navigate("./dashboard");
     } else {
       alert(error || "Invalid credentials. Try again.");
     }

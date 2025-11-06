@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import Layout from "../components/Layout";
 
 function Deposit() {
-  return (
-    <div>Deposit</div>
-  )
+  return <Layout>Deposit</Layout>;
 }
 
-export default Deposit
+export default Deposit;
