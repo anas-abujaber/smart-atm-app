@@ -1,6 +1,7 @@
 import React from "react";
 import { LogOutIcon } from "lucide-react";
 import { useUser } from "../context/UserContext";
+import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 
 export default function Navbar() {
   const { user, logout } = useUser();
@@ -11,7 +12,9 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">💳</span>
+              <span className="text-white font-bold text-xl">
+                <LocalAtmIcon />
+              </span>
             </div>
             <h1 className="text-xl font-bold text-gray-800">Smart ATM</h1>
           </div>
