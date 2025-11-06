@@ -61,11 +61,11 @@ export default function History() {
 
               <div className="flex-1 ml-4 flex flex-col">
                 <div className="font-bold text-base">{tx.type}</div>
-                <div className="text-xs text-[#555] mt-[2px]">
+                <div className="text-xs text-[#555] mt-0.5">
                   {formatDateTime(tx.date)}
                 </div>
                 {tx.to && (
-                  <div className="text-xs text-[#555] mt-[2px]">
+                  <div className="text-xs text-[#555] mt-0.5">
                     To: {tx.to}
                   </div>
                 )}
