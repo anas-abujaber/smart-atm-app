@@ -10,6 +10,7 @@ import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import { AccountCircle, Lock } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
+import { toast } from "sonner";
 function LoginForm() {
   const [username, setUsername] = useState("");
   const [pin, setPin] = useState("");
@@ -26,6 +27,7 @@ function LoginForm() {
     const success = await login(username, pin);
     if (success) {
       navigate("./dashboard");
+      toast.success(`Welcome back, ${username}!`);
     } else {
       // alert(error || "Invalid credentials. Try again.");
     }

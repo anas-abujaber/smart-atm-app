@@ -2,7 +2,7 @@ import React from "react";
 import { LogOutIcon } from "lucide-react";
 import { useUser } from "../context/AuthContext";
 import LocalAtmIcon from "@mui/icons-material/LocalAtm";
-
+import { toast } from "sonner";
 export default function Navbar() {
   const { user, logout } = useUser();
 
@@ -34,10 +34,14 @@ export default function Navbar() {
             )}
 
             <button
-              onClick={logout}
+              onClick={() => {
+                logout();
+                toast.info("Logged out successfully");
+              }}
               className="flex items-center space-x-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
             >
               <LogOutIcon className="w-4 h-4" />
+
               <span>Logout</span>
             </button>
           </div>

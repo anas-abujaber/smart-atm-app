@@ -1,8 +1,5 @@
-import React from "react";
-import Layout from "../components/Layout";
+import TransactionForm from "../components/TransactionForm.jsx";
 
-function Withdraw() {
-  return <Layout>Withdraw</Layout>;
+export default function WithdrawPage() {
+  return <TransactionForm type="Withdraw" />;
 }
-
-export default Withdraw;

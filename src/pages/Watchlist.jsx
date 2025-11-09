@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Star } from "lucide-react";
 import Layout from "../components/Layout";
+import { toast } from "sonner";
 
 const currenciesData = [
   { code: "USD", rate: 3.7 },
@@ -14,8 +15,10 @@ export default function Watchlist() {
   const toggleWatchlist = (currency) => {
     if (watchlist.find((item) => item.code === currency.code)) {
       setWatchlist(watchlist.filter((item) => item.code !== currency.code));
+      toast.info(`${currency.code} removed from watchlist`);
     } else {
       setWatchlist([...watchlist, currency]);
+      toast.success(`${currency.code} added to watchlist`);
     }
   };
 
@@ -29,7 +32,7 @@ export default function Watchlist() {
           {currenciesData.map((currency) => (
             <div
               key={currency.code}
-              className="w-[220px] bg-linear-to-b from-[#ecf6ff]/90 to-[#f5faff]/90 rounded-xl p-4 shadow-sm flex flex-col justify-between transition-transform duration-150 hover:-translate-y-1 hover:shadow-lg"
+              className="w-[220px] bg-gradient-to-b from-[#ecf6ff]/90 to-[#f5faff]/90 rounded-xl p-4 shadow-sm flex flex-col justify-between transition-transform duration-150 hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="flex justify-between items-start">
                 <div>
@@ -79,7 +82,7 @@ export default function Watchlist() {
             {watchlist.map((currency) => (
               <div
                 key={currency.code}
-                className="w-[220px] bg-linear-to-b from-[#fff8e6] to-[#fff6e0] border border-[#f3d68a] rounded-xl p-4 shadow-sm flex flex-col justify-between"
+                className="w-[220px] bg-gradient-to-b from-[#fff8e6] to-[#fff6e0] border border-[#f3d68a] rounded-xl p-4 shadow-sm flex flex-col justify-between"
               >
                 <div className="flex justify-between items-start">
                   <div>
