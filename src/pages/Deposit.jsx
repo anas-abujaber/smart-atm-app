@@ -1,8 +1,5 @@
-import React from "react";
-import Layout from "../components/Layout";
+import TransactionForm from "../components/TransactionForm.jsx";
 
-function Deposit() {
-  return <Layout>Deposit</Layout>;
+export default function DepositPage() {
+  return <TransactionForm type="Deposit" />;
 }
-
-export default Deposit;

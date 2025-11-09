@@ -7,6 +7,7 @@ import Settings from "./pages/Settings";
 import Watchlist from "./pages/Watchlist";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { Toaster } from "sonner";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
+
+      <Toaster position="top-right" richColors></Toaster>
     </>
   );
 }
