@@ -5,6 +5,7 @@ import { useAccountStats } from "../hooks/useAccountStats";
 import AccountBalanceCard from "../components/AccountBalanceCard";
 import StatCard from "../components/StatCard";
 import QuickActions from "../components/QuickActions";
+import BirthdayPopup from "../components/BirthdayPopup";
 
 export default function Dashboard() {
   const { user } = useUser();
@@ -21,6 +22,8 @@ export default function Dashboard() {
     <Layout>
       <div style={{ marginTop: "20px" }}>
         <AccountBalanceCard balance={user.balance} />
+
+        <BirthdayPopup user={user} />
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4">
           <StatCard
