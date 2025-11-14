@@ -108,7 +108,7 @@ Displayed in clean stat cards.
 
 ### **9. Birthday Surprise 🎉**
 - On the user’s birthday:
-  - Popup: **“Happy Birthday, Anas!”**
+  - Popup: **“Happy Birthday, Nour!”**
   - 1,000 confetti pieces for 5 seconds.
   - Button: **“Thanks!”** to close.
   - Shown **once per year** using `localStorage`.  
