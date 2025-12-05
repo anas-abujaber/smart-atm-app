@@ -6,6 +6,8 @@ import AccountBalanceCard from "../components/AccountBalanceCard";
 import StatCard from "../components/StatCard";
 import QuickActions from "../components/QuickActions";
 import BirthdayPopup from "../components/BirthdayPopup";
+import CurrencyCard from "../components/CurrenciesCard";
+import { CURRENCIES } from "../utils/constants";
 
 export default function Dashboard() {
   const { user } = useUser();
@@ -39,6 +41,10 @@ export default function Dashboard() {
 
         <div className="mt-6">
           <QuickActions />
+        </div>
+
+        <div className="mt-6">
+          <CurrencyCard currency={CURRENCIES} />
         </div>
       </div>
     </Layout>

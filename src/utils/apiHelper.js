@@ -1,4 +1,4 @@
-const BASE_URL = "https://69061ac0ee3d0d14c134d489.mockapi.io/api";
+import { BASE_URL } from "./constants";
 
 export async function handleApi(endpoint, method = "GET", body = null) {
   const url = `${BASE_URL}/${endpoint}`;

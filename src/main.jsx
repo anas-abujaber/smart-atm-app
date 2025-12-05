@@ -4,12 +4,15 @@ import App from "./App.jsx";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.jsx";
+import { WatchlistProvider } from "./context/WatchlistContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <App />
+        <WatchlistProvider>
+          <App />
+        </WatchlistProvider>
       </AuthProvider>
     </BrowserRouter>
   </StrictMode>

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import Confetti from "react-confetti";
+import { lazy, useEffect, useState } from "react";
+const Confetti = lazy(() => import("react-confetti"));
 
 export default function BirthdayPopup({ user }) {
   const [show, setShow] = useState(false);
@@ -34,7 +34,7 @@ export default function BirthdayPopup({ user }) {
   if (!show) return null;
 
   return (
-    <>
+    <Suspense fallback={null}>
       {confetti && (
         <Confetti
           recycle={false}
@@ -58,6 +58,6 @@ export default function BirthdayPopup({ user }) {
           </button>
         </div>
       </div>
-    </>
+    </Suspense>
   );
 }

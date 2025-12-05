@@ -1,17 +1,25 @@
-import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
-import Deposit from "./pages/Deposit";
-import Withdraw from "./pages/Withdraw";
-import History from "./pages/History";
-import Settings from "./pages/Settings";
-import Watchlist from "./pages/Watchlist";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Toaster } from "sonner";
+import { lazy, Suspense } from "react";
+
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Watchlist = lazy(() => import("./pages/Watchlist"));
+const Deposit = lazy(() => import("./pages/Deposit"));
+const Withdraw = lazy(() => import("./pages/Withdraw"));
+const History = lazy(() => import("./pages/History"));
+const Settings = lazy(() => import("./pages/Settings"));
 
 function App() {
   return (
-    <>
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center h-screen">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+        </div>
+      }
+    >
       <Routes>
         <Route path="/" element={<Login />} />
 
@@ -26,7 +34,7 @@ function App() {
       </Routes>
 
       <Toaster position="top-right" richColors></Toaster>
-    </>
+    </Suspense>
   );
 }
 
