@@ -49,27 +49,29 @@ const TransactionForm = ({ type }) => {
 
   return (
     <Layout>
-      <div className="bg-white rounded-xl shadow-md p-8 max-w-2xl mx-auto">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 max-w-2xl mx-auto border border-transparent dark:border-blue-400/60">
         <div className="flex items-center space-x-3 mb-6">
           <div
             className={`w-12 h-12 rounded-full flex items-center justify-center ${
-              isDeposit ? "bg-green-100" : "bg-red-100"
+              isDeposit
+                ? "bg-green-100 dark:bg-green-900/30"
+                : "bg-red-100 dark:bg-red-900/30"
             }`}
           >
             {isDeposit ? (
-              <PlusCircleIcon className="w-6 h-6 text-green-600" />
+              <PlusCircleIcon className="w-6 h-6 text-green-600 dark:text-green-300" />
             ) : (
-              <MinusCircleIcon className="w-6 h-6 text-red-600" />
+              <MinusCircleIcon className="w-6 h-6 text-red-600 dark:text-red-300" />
             )}
           </div>
-          <h2 className="text-2xl font-bold text-gray-800">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
             {isDeposit ? "Deposit Money" : "Withdraw Money"}
           </h2>
         </div>
 
         <form onSubmit={handleTransaction} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Amount (ILS)
             </label>
             <input
@@ -77,14 +79,15 @@ const TransactionForm = ({ type }) => {
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               className={`w-full px-4 py-3 border rounded-lg 
-    border-gray-300 
-    focus:outline-none 
-    focus:ring-1 ${
-      isDeposit
-        ? "focus:ring-green-200 focus:border-green-400"
-        : "focus:ring-red-200 focus:border-red-400"
-    }
-    transition-colors`}
+                border-gray-300 dark:border-gray-600 
+                focus:outline-none 
+                focus:ring-1 ${
+                  isDeposit
+                    ? "focus:ring-green-200 focus:border-green-400 dark:focus:ring-green-400 dark:focus:border-green-300"
+                    : "focus:ring-red-200 focus:border-red-400 dark:focus:ring-red-400 dark:focus:border-red-300"
+                }
+                bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                transition-colors`}
               placeholder={`Enter amount to ${
                 isDeposit ? "deposit" : "withdraw"
               }`}
@@ -97,14 +100,18 @@ const TransactionForm = ({ type }) => {
 
           <div
             className={`rounded-lg p-4 ${
-              isDeposit ? "bg-green-50" : "bg-red-50"
+              isDeposit
+                ? "bg-green-50 dark:bg-green-900/30"
+                : "bg-red-50 dark:bg-red-900/30"
             }`}
           >
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-300">
               Current Balance:{" "}
               <span
                 className={`font-bold ${
-                  isDeposit ? "text-green-600" : "text-red-600"
+                  isDeposit
+                    ? "text-green-600 dark:text-green-300"
+                    : "text-red-600 dark:text-red-300"
                 }`}
               >
                 ₪{user?.balance.toLocaleString()}
@@ -112,11 +119,13 @@ const TransactionForm = ({ type }) => {
             </p>
 
             {amount && parseFloat(amount) > 0 && (
-              <p className="text-sm text-gray-600 mt-2">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
                 New Balance:{" "}
                 <span
                   className={`font-bold ${
-                    isDeposit ? "text-green-600" : "text-red-600"
+                    isDeposit
+                      ? "text-green-600 dark:text-green-300"
+                      : "text-red-600 dark:text-red-300"
                   }`}
                 >
                   ₪
@@ -133,8 +142,8 @@ const TransactionForm = ({ type }) => {
               type="submit"
               className={`flex-1 py-3 rounded-lg font-semibold transition-colors ${
                 isDeposit
-                  ? "bg-green-500 text-white hover:bg-green-600"
-                  : "bg-red-500 text-white hover:bg-red-600"
+                  ? "bg-green-500 text-white hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700"
+                  : "bg-red-500 text-white hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700"
               }`}
               disabled={isLoading}
             >
@@ -144,7 +153,7 @@ const TransactionForm = ({ type }) => {
             <button
               type="button"
               onClick={() => navigate("/dashboard")}
-              className="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+              className="flex-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 py-3 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
             >
               Cancel
             </button>

@@ -9,7 +9,7 @@ export default function History() {
   if (!user) {
     return (
       <Layout>
-        <div className="bg-white rounded-xl shadow-md p-8 text-center text-red-600 font-semibold">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 text-center text-red-600 dark:text-red-400 font-semibold">
           Please login first to view your transaction history.
         </div>
       </Layout>
@@ -20,8 +20,8 @@ export default function History() {
 
   return (
     <Layout>
-      <div className="bg-white rounded-xl shadow-md p-8">
-        <h2 className="text-2xl font-bold mb-5 text-gray-800">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 border border-transparent dark:border-blue-400/60">
+        <h2 className="text-2xl font-bold mb-5 text-gray-800 dark:text-gray-100">
           Transaction History
         </h2>
         <TransactionList transactions={transactions} />

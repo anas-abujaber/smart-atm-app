@@ -10,7 +10,7 @@ const Deposit = lazy(() => import("./pages/Deposit"));
 const Withdraw = lazy(() => import("./pages/Withdraw"));
 const History = lazy(() => import("./pages/History"));
 const Settings = lazy(() => import("./pages/Settings"));
-
+const NotFound = lazy(() => import("./pages/NotFound"));
 function App() {
   return (
     <Suspense
@@ -31,6 +31,7 @@ function App() {
           <Route path="/history" element={<History />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Toaster position="top-right" richColors></Toaster>

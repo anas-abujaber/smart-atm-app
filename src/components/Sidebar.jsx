@@ -13,7 +13,7 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false);
 
   const menuItems = [
-    { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard }, 
+    { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
     { name: "Deposit", path: "/deposit", icon: PlusCircle },
     { name: "Withdraw", path: "/withdraw", icon: MinusCircle },
     { name: "History", path: "/history", icon: Clock },
@@ -25,7 +25,7 @@ export default function Sidebar() {
     <>
       <aside
         className={`
-          bg-white rounded-xl shadow-md p-4 w-11/12 max-w-xs sm:w-56 md:w-64 h-fit
+          bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 w-11/12 max-w-xs sm:w-56 md:w-64 h-fit
           fixed top-16 left-0 z-40
           transform transition-transform duration-300 ease-in-out
           ${open ? "translate-x-0" : "-translate-x-full"}
@@ -40,15 +40,16 @@ export default function Sidebar() {
                 key={item.name}
                 to={item.path}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
+                  `flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors
+                  ${
                     isActive
                       ? "bg-blue-500 text-white"
-                      : "text-gray-700 hover:bg-gray-100"
+                      : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`
                 }
                 onClick={() => setOpen(false)}
               >
-                <Icon className="w-5 h-5 sm:w-5 sm:h-5" />
+                <Icon className="w-5 h-5 sm:w-5 sm:h-5 text-gray-700 dark:text-gray-200" />
                 <span className="truncate">{item.name}</span>
               </NavLink>
             );
@@ -56,8 +57,13 @@ export default function Sidebar() {
         </nav>
       </aside>
 
+      {/* Toggle button for small screens */}
       <button
-        className="sm:hidden fixed bottom-4 left-4 p-3 bg-blue-500 text-white rounded-full shadow-lg z-50"
+        className="
+          sm:hidden fixed bottom-4 left-4 p-3 bg-blue-500 text-white rounded-full shadow-lg z-50
+          dark:bg-blue-400 dark:text-black
+          transition-colors duration-300
+        "
         onClick={() => setOpen(!open)}
       >
         ☰

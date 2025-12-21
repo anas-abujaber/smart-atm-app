@@ -5,6 +5,7 @@ import { useUser } from "../context/AuthContext";
 import Layout from "../components/Layout";
 import AccountInfoCard from "../components/AccountInfoCard";
 import DangerZoneCard from "../components/DangerZoneCard";
+import ThemeToggle from "../components/ThemeToggle";
 
 export default function Settings() {
   const { user, resetAccount, isLoading } = useUser();
@@ -39,10 +40,14 @@ export default function Settings() {
 
   return (
     <Layout>
-      <div className="flex flex-col items-center w-full min-h-full">
+      <div className="flex flex-col items-center w-full min-h-full text-gray-800 dark:text-white">
         <div className="max-w-4xl w-full p-4 space-y-6">
-          <h2 className="text-3xl font-bold text-gray-800">Settings</h2>
+          <h2 className="text-3xl font-bold flex justify-between items-center text-gray-800 dark:text-white">
+            Settings
+          </h2>
+
           <AccountInfoCard user={user} />
+          <ThemeToggle />
           <DangerZoneCard
             onReset={handleReset}
             isLoading={isLoading || isResetting}

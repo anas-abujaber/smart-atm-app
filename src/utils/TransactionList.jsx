@@ -14,24 +14,24 @@ export default function TransactionList({ transactions }) {
 
   if (!transactions || transactions.length === 0) {
     return (
-      <div className="text-center text-gray-500 font-medium">
+      <div className="text-center text-gray-500 dark:text-gray-300 font-medium">
         No transactions found.
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="space-y-3">
       {transactions.map((tx) => (
         <div
           key={tx.id}
-          className="flex items-center justify-between bg-gray py-4 px-5 mb-3 rounded-xl shadow-md transition-colors duration-200 hover:bg-gray-100"
+          className="flex items-center justify-between bg-white dark:bg-gray-700 rounded-xl shadow-md px-5 py-4 transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-600 border border-transparent dark:border-blue-400/60"
         >
           <div
             className={`flex justify-center items-center w-12 h-12 rounded-full ${
               tx.type === "Deposit"
-                ? "bg-green-100 text-green-600"
-                : "bg-red-100 text-red-600"
+                ? "bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-300"
+                : "bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-300"
             }`}
           >
             {tx.type === "Deposit" ? (
@@ -42,22 +42,30 @@ export default function TransactionList({ transactions }) {
           </div>
 
           <div className="flex-1 ml-4 flex flex-col">
-            <div className="font-bold text-base">{tx.type}</div>
-            <div className="text-xs text-gray-500 mt-0.5">
+            <div className="font-bold text-base text-gray-800 dark:text-gray-100">
+              {tx.type}
+            </div>
+            <div className="text-xs text-gray-500 dark:text-gray-300 mt-0.5">
               {formatDateTime(tx.date)}
             </div>
             {tx.to && (
-              <div className="text-xs text-gray-500 mt-0.5">To: {tx.to}</div>
+              <div className="text-xs text-gray-500 dark:text-gray-300 mt-0.5">
+                To: {tx.to}
+              </div>
             )}
           </div>
 
           <div
             className={`font-bold text-base text-right ${
-              tx.type === "Deposit" ? "text-green-600" : "text-red-600"
+              tx.type === "Deposit"
+                ? "text-green-600 dark:text-green-300"
+                : "text-red-600 dark:text-red-300"
             }`}
           >
             {tx.type === "Deposit" ? "+" : "-"}₪{tx.amount}
-            <div className="text-xs text-gray-500">{tx.currency}</div>
+            <div className="text-xs text-gray-500 dark:text-gray-300">
+              {tx.currency}
+            </div>
           </div>
         </div>
       ))}

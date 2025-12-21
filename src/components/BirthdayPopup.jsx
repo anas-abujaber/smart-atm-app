@@ -1,4 +1,4 @@
-import { lazy, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 const Confetti = lazy(() => import("react-confetti"));
 
 export default function BirthdayPopup({ user }) {
@@ -42,16 +42,16 @@ export default function BirthdayPopup({ user }) {
           style={{ position: "fixed", top: 0, left: 0, zIndex: 9999 }}
         />
       )}
-      <div className="fixed inset-0 flex items-center justify-center bg-transparent bg-opacity-50 z-50">
-        <div className="bg-white p-6 rounded-2xl shadow-lg text-center max-w-sm animate-fade-in">
-          <h2 className="text-2xl font-bold mb-2">
+      <div className="fixed inset-0 flex items-center justify-center bg-black/50 dark:bg-black/60 z-50">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg text-center max-w-sm animate-fade-in transition-colors">
+          <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100">
             Happy Birthday, {user.first_name}! 🎉🎂
           </h2>
-          <p className="text-gray-600 mb-4">
+          <p className="text-gray-600 dark:text-gray-300 mb-4">
             Wishing you a day full of happiness and joy!
           </p>
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+            className="bg-blue-500 dark:bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-600 dark:hover:bg-blue-500 transition-colors"
             onClick={() => setShow(false)}
           >
             Thanks!
